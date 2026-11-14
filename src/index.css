@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Template typography & styling */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-[#FAFAF8] text-nest-charcoal;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-nest-charcoal tracking-tight font-bold;
+  }
+}
+
+/* Template highlighter underline (like 'together.' in the screenshot) */
+.nest-highlight {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.nest-highlight::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -4px;
+  bottom: 2px;
+  height: 12px;
+  background-color: #D9CEF3;
+  z-index: -1;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+
+.nest-highlight-mint::after {
+  background-color: #D7EFE2;
+}
+
+/* Leaflet fix for z-index with overlays */
+.leaflet-pane {
+  z-index: 10 !important;
+}
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 20 !important;
+}
+
+/* Custom map pulse pin styling */
+.custom-pin-pulse {
+  border-radius: 50%;
+  position: relative;
+}
+
+.custom-pin-pulse::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  opacity: 0.75;
+  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
